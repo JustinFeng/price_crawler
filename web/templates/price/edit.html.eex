@@ -1,0 +1,6 @@
+<h2>Edit price</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: product_price_path(@conn, :update, @product, @price) %>
+
+<%= link "Back", to: product_price_path(@conn, :index, @product) %>
