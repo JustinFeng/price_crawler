@@ -4,7 +4,7 @@ defmodule PriceCrawler.ProductController do
   alias PriceCrawler.Product
 
   def index(conn, _params) do
-    products = Repo.all(Product) |> Repo.preload(:vendor)
+    products = Repo.all(Product) |> Repo.preload(:vendor) |> Repo.preload(:prices)
     render(conn, "index.html", products: products)
   end
 

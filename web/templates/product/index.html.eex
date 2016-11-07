@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>Search key</th>
       <th>Vendor</th>
+      <th>Latest price</th>
 
       <th></th>
     </tr>
@@ -16,6 +17,10 @@
       <td><%= product.name %></td>
       <td><%= product.search_key %></td>
       <td><%= product.vendor.name %></td>
+      <td><%= product.prices
+              |> Enum.sort(&(&1.id > &2.id))
+              |> Enum.map(&(&1.price))
+              |> Enum.at(0) %></td>
 
       <td class="text-right">
         <%= link "Show", to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
