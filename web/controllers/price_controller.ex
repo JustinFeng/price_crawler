@@ -85,7 +85,7 @@ defmodule PriceCrawler.PriceController do
   defp invalid_product(conn) do
     conn
     |> put_flash(:error, "Invalid product!")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: product_path(conn, :index))
     |> halt
   end
 end

@@ -16,7 +16,8 @@ defmodule PriceCrawler.Router do
   scope "/", PriceCrawler do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", ProductController, :index
+    
     resources "/vendors", VendorController
     resources "/products", ProductController do
       resources "/prices", PriceController
