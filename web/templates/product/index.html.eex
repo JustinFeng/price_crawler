@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Search key</th>
       <th>Vendor</th>
       <th>Latest price</th>
 
@@ -14,16 +13,14 @@
   <tbody>
 <%= for product <- @products do %>
     <tr>
-      <td><%= product.name %></td>
-      <td><%= product.search_key %></td>
+      <td><%= link product.name, to: product_path(@conn, :show, product) %></td>
       <td><%= product.vendor.name %></td>
-      <td><%= product.prices
+      <td><%= link product.prices
               |> Enum.sort(&(&1.id > &2.id))
               |> Enum.map(&(&1.price))
-              |> Enum.at(0) %></td>
+              |> Enum.at(0), to: product_price_path(@conn, :index, product) %></td>
 
       <td class="text-right">
-        <%= link "Show", to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: product_path(@conn, :edit, product), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: product_path(@conn, :delete, product), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>

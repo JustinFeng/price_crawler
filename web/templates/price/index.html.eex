@@ -6,6 +6,7 @@
       <th>Price</th>
       <th>Type</th>
       <th>Product</th>
+      <th>On Market</th>
 
       <th></th>
     </tr>
@@ -16,9 +17,9 @@
       <td><%= price.price %></td>
       <td><%= price.type %></td>
       <td><%= @product.name %></td>
+      <td><%= price.inserted_at %></td>
 
       <td class="text-right">
-        <%= link "Show", to: product_price_path(@conn, :show, @product, price), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: product_price_path(@conn, :edit, @product, price), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: product_price_path(@conn, :delete, @product, price), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
