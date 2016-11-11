@@ -3,8 +3,12 @@ defmodule PriceCrawler.ProductController do
 
   alias PriceCrawler.Product
 
-  def index(conn, _params) do
-    products = Repo.all(Product) |> Repo.preload(:vendor) |> Repo.preload(:prices)
+  def index(conn, params) do
+    products = case params do
+      %{"search" => %{"key" => search_key}} -> from p in Product, where: ilike(p.name, ^"%#{search_key}%")
+      _ -> Product
+    end
+    |> Repo.all |> Repo.preload(:vendor) |> Repo.preload(:prices)
     render(conn, "index.html", products: products)
   end
 

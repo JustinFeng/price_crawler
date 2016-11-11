@@ -1,5 +1,10 @@
 <h2>Listing products</h2>
 
+<%= form_for @conn, product_path(@conn, :index), [as: :search], fn f -> %>
+  <%= text_input f, :key %>
+  <%= submit "Search" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
