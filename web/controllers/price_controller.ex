@@ -6,7 +6,7 @@ defmodule PriceCrawler.PriceController do
   alias PriceCrawler.Price
 
   def index(conn, _params) do
-    prices = Repo.all(assoc(conn.assigns[:product], :prices))
+    prices = Repo.all(from p in assoc(conn.assigns[:product], :prices), order_by: [desc: p.id])
     render(conn, "index.html", prices: prices)
   end
 

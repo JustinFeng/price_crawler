@@ -3,6 +3,7 @@ defenum PriceTypeEnum, auto: 0, manual: 1
 
 defmodule PriceCrawler.Price do
   use PriceCrawler.Web, :model
+  use Timex.Ecto.Timestamps
 
   schema "prices" do
     field :price, Money.Ecto.Type

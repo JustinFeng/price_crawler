@@ -8,7 +8,9 @@ defmodule PriceCrawler.ProductController do
       %{"search" => %{"key" => search_key}} -> from p in Product, where: ilike(p.name, ^"%#{search_key}%")
       _ -> Product
     end
-    |> Repo.all |> Repo.preload(:vendor) |> Repo.preload(:prices)
+    |> Repo.all
+    |> Repo.preload(:vendor)
+    |> Repo.preload(prices: from(p in PriceCrawler.Price, order_by: [desc: p.id]))
     render(conn, "index.html", products: products)
   end
 
