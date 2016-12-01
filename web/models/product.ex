@@ -1,6 +1,5 @@
 defmodule PriceCrawler.Product do
   use PriceCrawler.Web, :model
-  use Timex.Ecto.Timestamps
 
   schema "products" do
     field :name, :string

@@ -18,15 +18,16 @@ defmodule Mix.Tasks.PriceCrawler.Crawl do
       |> Enum.find(&(&1.id == product.vendor_id))
       |> case do
         %PriceCrawler.Vendor{search_pattern: search_pattern} ->
-          new_price = fetch_price(search_pattern, product.search_key)
+          new_money = fetch_price(search_pattern, product.search_key)
+          new_price = new_money.amount
           Repo.one(from x in PriceCrawler.Price, order_by: [desc: x.id], where: x.product_id == ^product.id, limit: 1)
           |> case do
-            %PriceCrawler.Price{price: price} when price == new_price ->
+            %PriceCrawler.Price{price: %Money{amount: amount}} when amount == new_price ->
               IO.puts "Price stay the same!"
             _ ->
               product
               |> Ecto.build_assoc(:prices)
-              |> PriceCrawler.Price.changeset(%{price: fetch_price(search_pattern, product.search_key), type: "auto"})
+              |> PriceCrawler.Price.changeset(%{price: new_money, type: "auto"})
               |> Repo.insert
           end
       end

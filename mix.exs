@@ -19,7 +19,7 @@ defmodule PriceCrawler.Mixfile do
   def application do
     [mod: {PriceCrawler, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison, :timex]]
+                    :phoenix_ecto, :postgrex, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,9 +42,7 @@ defmodule PriceCrawler.Mixfile do
      {:ecto_enum, "~> 0.4.0"},
      {:ecto, "~> 2.0.5", override: true},
      {:httpoison, "~> 0.9.0"},
-     {:floki, "~> 0.11.0"},
-     {:timex, "~> 3.0"},
-     {:timex_ecto, "~> 3.0.5"}]
+     {:floki, "~> 0.11.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
