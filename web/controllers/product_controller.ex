@@ -11,6 +11,7 @@ defmodule PriceCrawler.ProductController do
     |> Repo.all
     |> Repo.preload(:vendor)
     |> Repo.preload(prices: from(p in PriceCrawler.Price, order_by: [desc: p.id]))
+    |> Enum.sort(&(Enum.at(&1.prices, 0).updated_at > Enum.at(&2.prices, 0).updated_at))
     render(conn, "index.html", products: products)
   end
 
