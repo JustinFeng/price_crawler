@@ -3,3 +3,11 @@
 .stale-price {
   text-decoration: line-through
 }
+
+.up {
+  color: red;
+}
+
+.down {
+  color: green;
+}
