@@ -17,22 +17,26 @@
   </thead>
   <tbody>
 <%= for product <- @products do %>
-  <% curr_price = Enum.at(product.prices, 0) %>
-  <% prev_price = Enum.at(product.prices, 1) %>
-  <% price_trend = if prev_price do %>
-    <%= if prev_price.price > curr_price.price, do: "down", else: "up" %>
-  <% else %>
-    <%= "" %>
-  <% end %>
   <tr>
     <td><%= link product.name, to: product_path(@conn, :show, product) %></td>
     <td><%= product.vendor.name %></td>
-    <td>
-      <%= link curr_price.price, class: safe_to_string(price_trend), to: product_price_path(@conn, :index, product) %>
-      <%= if prev_price do %>
-        <span class="stale-price">(<%= prev_price.price %>)</span>
+    <% curr_price = Enum.at(product.prices, 0) %>
+    <%= if curr_price do %>
+      <% prev_price = Enum.at(product.prices, 1) %>
+      <% price_trend = if prev_price do %>
+        <%= if prev_price.price > curr_price.price, do: "down", else: "up" %>
+      <% else %>
+        <%= "" %>
       <% end %>
-    </td>
+      <td>
+        <%= link curr_price.price, class: safe_to_string(price_trend), to: product_price_path(@conn, :index, product) %>
+        <%= if prev_price do %>
+          <span class="stale-price">(<%= prev_price.price %>)</span>
+        <% end %>
+      </td>
+    <%= else %>
+      <td>-</td>
+    <% end %>
 
     <td class="text-right">
       <%= link "Edit", to: product_path(@conn, :edit, product), class: "btn btn-default btn-xs" %>
