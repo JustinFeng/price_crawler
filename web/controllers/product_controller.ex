@@ -10,12 +10,12 @@ defmodule PriceCrawler.ProductController do
     end
     |> Repo.all
     |> Repo.preload(:vendor)
-    |> Repo.preload(prices: from(p in PriceCrawler.Price, order_by: [desc: p.id]))
+    |> Repo.preload(prices: from(p in PriceCrawler.Price, order_by: [desc: p.updated_at]))
     |> Enum.sort(fn(p1, p2) ->
       case {Enum.at(p1.prices, 0), Enum.at(p2.prices, 0)} do
         {nil, _} -> false
         {_, nil} -> true
-        {p1_price, p2_price} -> p1_price.updated_at > p2_price.updated_at
+        {p1_price, p2_price} -> Ecto.DateTime.compare(p1_price.updated_at, p2_price.updated_at) == :gt
       end
     end)
     render(conn, "index.html", products: products)
