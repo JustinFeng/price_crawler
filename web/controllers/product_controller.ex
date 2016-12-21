@@ -1,6 +1,8 @@
 defmodule PriceCrawler.ProductController do
   use PriceCrawler.Web, :controller
 
+  plug Coherence.Authentication.Session, [protected: true]
+
   alias PriceCrawler.Product
 
   def index(conn, params) do

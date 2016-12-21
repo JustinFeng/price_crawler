@@ -30,3 +30,18 @@ config :money,
   default_currency: :AUD,
   separator: ",",
   delimeter: "."
+
+# %% Coherence Configuration %%   Don't remove this line
+config :coherence,
+  user_schema: PriceCrawler.User,
+  repo: PriceCrawler.Repo,
+  module: PriceCrawler,
+  logged_out_url: "/",
+  email_from_name: "Your Name",
+  email_from_email: "yourname@example.com",
+  opts: [:authenticatable, :recoverable, :lockable, :trackable, :unlockable_with_token]
+
+config :coherence, PriceCrawler.Coherence.Mailer,
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: "your api key here"
+# %% End Coherence Configuration %%

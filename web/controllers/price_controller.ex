@@ -2,6 +2,7 @@ defmodule PriceCrawler.PriceController do
   use PriceCrawler.Web, :controller
 
   plug :assign_product
+  plug Coherence.Authentication.Session, [protected: true]
 
   alias PriceCrawler.Price
 
