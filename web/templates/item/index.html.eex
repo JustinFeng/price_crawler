@@ -1,0 +1,31 @@
+<h2>Listing items</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for item <- @items do %>
+    <tr>
+      <td><%= item.product.name %></td>
+      <td><%= item.price %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.total %></td>
+
+      <td class="text-right">
+        <%= link "Edit", to: order_item_path(@conn, :edit, @order, item), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: order_item_path(@conn, :delete, @order, item), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New item", to: order_item_path(@conn, :new, @order) %>

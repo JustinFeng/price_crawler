@@ -30,6 +30,10 @@ defmodule PriceCrawler.Router do
     resources "/products", ProductController do
       resources "/prices", PriceController
     end
+
+    resources "/orders", OrderController do
+      resources "/items", ItemController
+    end
   end
 
   # Other scopes may use custom stacks.

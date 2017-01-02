@@ -6,7 +6,7 @@ defmodule PriceCrawler.Product do
     field :search_key, :string
     belongs_to :vendor, PriceCrawler.Vendor
 
-    has_many :prices, PriceCrawler.Price
+    has_many :prices, PriceCrawler.Price, on_delete: :delete_all
 
     timestamps()
   end

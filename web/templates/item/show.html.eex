@@ -1,0 +1,28 @@
+<h2>Show item</h2>
+
+<ul>
+
+  <li>
+    <strong>Product:</strong>
+    <%= @item.product.name %>
+  </li>
+
+  <li>
+    <strong>Price:</strong>
+    <%= @item.price %>
+  </li>
+
+  <li>
+    <strong>Quantity:</strong>
+    <%= @item.quantity %>
+  </li>
+
+  <li>
+    <strong>Total:</strong>
+    <%= @item.total %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: order_item_path(@conn, :edit, @order, @item) %>
+<%= link "Back", to: order_item_path(@conn, :index, @order) %>

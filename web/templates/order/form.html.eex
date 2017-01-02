@@ -1,0 +1,47 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :customer, class: "control-label" %>
+    <%= text_input f, :customer, class: "form-control" %>
+    <%= error_tag f, :customer %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :status, class: "control-label" %>
+    <%= select f, :status, Enum.map(OrderStatusEnum.__enum_map__, fn({k, v}) -> k end), value: @changeset.data.status, class: "form-control" %>
+    <%= error_tag f, :status %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :shipping_vendor, class: "control-label" %>
+    <%= text_input f, :shipping_vendor, class: "form-control" %>
+    <%= error_tag f, :shipping_vendor %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :shipping_number, class: "control-label" %>
+    <%= text_input f, :shipping_number, class: "form-control" %>
+    <%= error_tag f, :shipping_number %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :cost, class: "control-label" %>
+    <%= text_input f, :cost, class: "form-control" %>
+    <%= error_tag f, :cost %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :revenue, class: "control-label" %>
+    <%= text_input f, :revenue, class: "form-control" %>
+    <%= error_tag f, :revenue %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

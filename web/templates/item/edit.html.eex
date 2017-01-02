@@ -1,0 +1,6 @@
+<h2>Edit item</h2>
+
+<%= render "form.html", changeset: @changeset, products: @products,
+                        action: order_item_path(@conn, :update, @order, @item) %>
+
+<%= link "Back", to: order_item_path(@conn, :index, @order) %>

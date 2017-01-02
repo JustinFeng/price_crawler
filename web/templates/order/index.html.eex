@@ -1,0 +1,31 @@
+<h2>Listing orders</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Status</th>
+      <th>Profit</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for order <- @orders do %>
+    <tr>
+      <td><%= order.customer %></td>
+      <td><%= order.status %></td>
+      <td><%= order.profit %></td>
+
+      <td class="text-right">
+        <%= link "Items", to: order_item_path(@conn, :index, order), class: "btn btn-info btn-xs" %>
+        <%= link "Show", to: order_path(@conn, :show, order), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: order_path(@conn, :edit, order), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: order_path(@conn, :delete, order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New order", to: order_path(@conn, :new) %>

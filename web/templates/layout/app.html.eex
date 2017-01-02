@@ -16,7 +16,8 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><%= link "Home", to: product_path(@conn, :index)%></li>
+            <li><%= link "Orders", to: order_path(@conn, :index)%></li>
+            <li><%= link "Products", to: product_path(@conn, :index)%></li>
             <li><%= link "Vendors", to: vendor_path(@conn, :index)%></li>
           </ul>
         </nav>
